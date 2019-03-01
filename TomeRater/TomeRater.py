@@ -47,6 +47,9 @@ class Book:
         Book.isbn_list+=[isbn]
         self.ratings = []
 
+    def __repr__(self):
+        return self.title
+
     def get_title(self):
         return self.title
     
@@ -75,7 +78,7 @@ class Book:
         avg = 0
         for x in self.ratings:
             avg += x
-        return avg/len(self.ratings)
+        return avg/(len(self.ratings) if len(self.ratings)>0 else 1)
 
     def __hash__(self):
         return hash((self.title, self.isbn))
@@ -142,6 +145,8 @@ class TomeRater:
             print("User with email "+email+" already exists.")
 
     def print_catalog(self):
+        for x in self.books:
+            print(x)
         print(list(self.books))
 
     def print_users(self):
@@ -151,7 +156,7 @@ class TomeRater:
         b = None
         lrg = None
         for k,v in self.books.items():
-            if b == None or lrg < v:
+            if type(b) == type(None) or lrg < v:
                 b = k
                 lrg = v
         return b
@@ -161,7 +166,7 @@ class TomeRater:
         rtng = None
         for k,v in self.books.items():
             c_rtng = k.get_average_rating()
-            if b == None or rtng < c_rtng:
+            if type(b) == type(None) or rtng < c_rtng:
                 b = k
                 rtng = c_rtng
         return b
@@ -171,7 +176,7 @@ class TomeRater:
         rtng = None
         for k,v in self.users.items():
             c_rtng = v.get_average_rating()
-            if u == None or rtng < c_rtng:
+            if type(u) == type(None) or rtng < c_rtng:
                 u = v
                 rtng = c_rtng
         return u
