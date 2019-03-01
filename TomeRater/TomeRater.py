@@ -60,7 +60,7 @@ class Book:
         if new_isbn in Book.isbn_list:
             print("ISBN "+str(new_isbn)+" is taken.")
         else:
-            print(self.title+"'s isbn has been changed from "+str(self.isbn)+" to "+str(new_isbn))
+            print(self.title+"'s ISBN has been changed from "+str(self.isbn)+" to "+str(new_isbn))
             Book.isbn_list.remove(self.isbn)
             self.isbn = new_isbn
             Book.isbn_list+=[new_isbn]
@@ -145,8 +145,6 @@ class TomeRater:
             print("User with email "+email+" already exists.")
 
     def print_catalog(self):
-        for x in self.books:
-            print(x)
         print(list(self.books))
 
     def print_users(self):
