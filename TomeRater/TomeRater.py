@@ -32,7 +32,7 @@ class User(object):
         for k,v in self.books.items():
             if isinstance(v, (float, int, complex)):
                 sum_ratings += v
-        return sum_ratings/len(self.books)
+        return sum_ratings/(len(self.books) if len(self.books) > 0 else 1)
 
 class Book:
     isbn_list = []
