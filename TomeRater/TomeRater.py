@@ -30,7 +30,7 @@ class User(object):
     def get_average_rating(self):
         sum_ratings = 0
         for k,v in self.books.items():
-            if isinstance(v, float):
+            if isinstance(v, (float, int, complex)):
                 sum_ratings += v
         return sum_ratings/len(self.books)
 
@@ -66,7 +66,7 @@ class Book:
             Book.isbn_list+=[new_isbn]
     
     def add_rating(self, rating):
-        if isinstance(rating,float) and rating>=0 and rating<=4:
+        if isinstance(rating,(float,int,complex)) and rating>=0 and rating<=4:
             self.ratings += [rating]
         else:
             print("Invalid Rating")
